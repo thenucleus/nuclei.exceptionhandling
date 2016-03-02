@@ -63,8 +63,6 @@
       <Link>Properties\AssemblyInfo.Base.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.BuildInformation.cs" />
-    <Compile Include="Properties\AssemblyInfo.Company.cs" />
-    <Compile Include="Properties\AssemblyInfo.VersionNumber.cs" />
     <Compile Include="EventType.cs" />
     <Compile Include="EventTypeToEventCategoryMap.cs" />
     <Compile Include="ExceptionFilter.cs" />
