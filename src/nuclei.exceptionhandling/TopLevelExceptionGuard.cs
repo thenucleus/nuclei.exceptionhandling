@@ -30,6 +30,10 @@ namespace Nuclei.ExceptionHandling
             "Microsoft.Design",
             "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Catching an Exception object here because this is the top-level exception handler.")]
+        [SuppressMessage(
+            "Microsoft.Performance",
+            "CA1811:AvoidUncalledPrivateCode",
+            Justification = "This class is embedded in an user assembly and called from there. Hence all methods are internal.")]
         public static GuardResult RunGuarded(Action actionToExecute, params ExceptionProcessor[] exceptionProcessors)
         {
             {

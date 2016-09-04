@@ -6,6 +6,7 @@
 //-----------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Nuclei.ExceptionHandling
 {
@@ -29,6 +30,10 @@ namespace Nuclei.ExceptionHandling
         /// </summary>
         /// <param name="type">The type of the event.</param>
         /// <returns>The requested category ID.</returns>
+        [SuppressMessage(
+            "Microsoft.Performance",
+            "CA1811:AvoidUncalledPrivateCode",
+            Justification = "This class is embedded in an user assembly and called from there. Hence all methods are internal.")]
         public static short EventCategory(EventType type)
         {
             return _eventTypeToEventCategoryMap[type];
