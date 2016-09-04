@@ -3,10 +3,10 @@
   <metadata>
     <id>Nuclei.ExceptionHandling</id>
     <version>$VersionSemantic$</version>
-    <authors>P. van der Velde</authors>
-    <owners>P. van der Velde</owners>
+    <authors>Metamorpher</authors>
+    <owners>Metamorpher</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://github.com/pvandervelde/Nuclei</projectUrl>
+    <projectUrl>https://github.com/Metamorpher/Nuclei.ExceptionHandling</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
       Provides an exception filter for handling unhandled exceptions without destroying the
@@ -20,6 +20,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="$DirTemp$\src\Nuclei.ExceptionHandling\*.cs.pp" target="content\Nuclei\ExceptionHandling" />
+    <file src="$DirTempSrc$\*.cs.pp" target="content\Nuclei\ExceptionHandling" />
   </files>
 </package>

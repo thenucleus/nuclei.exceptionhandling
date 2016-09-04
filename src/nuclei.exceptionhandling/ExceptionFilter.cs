@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright company="Nuclei">
-//     Copyright 2013 Nuclei. Licensed under the Apache License, Version 2.0.
+// <copyright company="TheNucleus">
+// Copyright (c) TheNucleus. All rights reserved.
+// Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -19,14 +20,14 @@ namespace Nuclei.ExceptionHandling
     /// </summary>
     /// <remarks>
     /// <para>
-    /// Code inside of exception filters runs before the stack has been logically unwound, and so the throw point 
+    /// Code inside of exception filters runs before the stack has been logically unwound, and so the throw point
     /// is still visible in tools like debuggers, and back out code from finally blocks has not yet been run.
     /// See http://blogs.msdn.com/rmbyers/archive/2008/12/22/getting-good-dumps-when-an-exception-is-thrown.aspx.
-    /// Filters can also be used to provide more fine-grained control over which exceptions are caught.  
+    /// Filters can also be used to provide more fine-grained control over which exceptions are caught.
     /// </para>
     /// <para>
     /// Be aware, however, that filters run at a surprising time - after an exception has occurred but before
-    /// any finally clause has been run to restore broken invariants for things lexically in scope.  This can lead to 
+    /// any finally clause has been run to restore broken invariants for things lexically in scope.  This can lead to
     /// confusion if you access or manipulate program state from your filter.  See this blog entry for details
     /// and more specific guidance: http://blogs.msdn.com/clrteam/archive/2009/08/25/the-good-and-the-bad-of-exception-filters.aspx.
     /// </para>
@@ -42,15 +43,15 @@ namespace Nuclei.ExceptionHandling
     /// </source>
     internal static class ExceptionFilter
     {
-        private static Action<Action, Func<Exception, bool>, Action<Exception>> s_Filter = GenerateFilter();
+        private static Action<Action, Func<Exception, bool>, Action<Exception>> _filter = GenerateFilter();
 
         /// <summary>
         /// Execute the body with the specified filter.
         /// </summary>
         /// <param name="body">The code to run inside the "try" block.</param>
         /// <param name="filter">
-        /// Called whenever an exception escapes body, passing the exception object.  
-        /// For exceptions that aren't derived from System.Exception, they'll show up as an instance of 
+        /// Called whenever an exception escapes body, passing the exception object.
+        /// For exceptions that aren't derived from System.Exception, they'll show up as an instance of
         /// RuntimeWrappedException.
         /// </param>
         /// <param name="handler">
@@ -58,7 +59,7 @@ namespace Nuclei.ExceptionHandling
         /// </param>
         public static void ExecuteWithFilter(Action body, Func<Exception, bool> filter, Action<Exception> handler)
         {
-            s_Filter(body, filter, handler);
+            _filter(body, filter, handler);
         }
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace Nuclei.ExceptionHandling
         /// </summary>
         /// <param name="body">The code to run inside the "try" block.</param>
         /// <param name="filter">
-        /// Called whenever an exception escapes body, passing the exception object.  
-        /// For exceptions that aren't derived from System.Exception, they'll show up as 
+        /// Called whenever an exception escapes body, passing the exception object.
+        /// For exceptions that aren't derived from System.Exception, they'll show up as
         /// an instance of RuntimeWrappedException.
         /// </param>
         /// <remarks>
@@ -77,7 +78,14 @@ namespace Nuclei.ExceptionHandling
         /// </remarks>
         public static void ExecuteWithFilter(Action body, Action<Exception> filter)
         {
-            ExecuteWithFilter(body, (e) => { filter(e); return false; }, null);
+            ExecuteWithFilter(
+                body,
+                e =>
+                    {
+                        filter(e);
+                        return false;
+                    },
+                null);
         }
 
         /// <summary>
@@ -88,7 +96,7 @@ namespace Nuclei.ExceptionHandling
         public static void ExecuteWithFailfast(Action body)
         {
             ExecuteWithFilter(
-                body, 
+                body,
                 (e) =>
                 {
                     Debugger.Log(10, "ExceptionFilter", "Saw unexpected exception: " + e.ToString());
@@ -97,7 +105,7 @@ namespace Nuclei.ExceptionHandling
                     Environment.FailFast("Unexpected Exception", e);
 
                     return false;   // should never be reached
-                }, 
+                },
                 null);
         }
 
@@ -120,17 +128,17 @@ namespace Nuclei.ExceptionHandling
             foreach (var tc in typesToCatch)
             {
                 Debug.Assert(
-                    typeof(TExceptionBase).IsAssignableFrom(tc), 
+                    typeof(TExceptionBase).IsAssignableFrom(tc),
                     string.Format(
                         CultureInfo.InvariantCulture,
                         "Error: {0} is not a sub-class of {1}",
-                        tc.FullName, 
+                        tc.FullName,
                         typeof(TExceptionBase).FullName));
             }
 #endif
 
             ExecuteWithFilter(
-                body, 
+                body,
                 (e) =>
                 {
                     // If the thrown exception is a sub-type (including the same time) of at least one of the provided types then
@@ -144,7 +152,7 @@ namespace Nuclei.ExceptionHandling
                     }
 
                     return false;
-                }, 
+                },
                 (e) =>
                 {
                     handler((TExceptionBase)e);
@@ -170,13 +178,16 @@ namespace Nuclei.ExceptionHandling
         /// Generate a function which has an EH filter.
         /// </summary>
         /// <returns>The delegate that holds the EH filter.</returns>
-        [SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "exLoc",
+        [SuppressMessage(
+            "Microsoft.Performance",
+            "CA1804:RemoveUnusedLocals",
+            MessageId = "exLoc",
             Justification = "If we remove this statement then we're generating illegal IL and the application crashes on startup.")]
         private static Action<Action, Func<Exception, bool>, Action<Exception>> GenerateFilter()
         {
             // Create a dynamic assembly with reflection emit
             var name = new AssemblyName("DynamicFilter");
-#if (DEBUG)
+#if DEBUG
             AssemblyBuilder assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);
             var module = assembly.DefineDynamicModule("DynamicFilter", "DynamicFilter.dll");
 #else
@@ -193,7 +204,7 @@ namespace Nuclei.ExceptionHandling
                     new PropertyInfo[] { typeof(RuntimeCompatibilityAttribute).GetProperty("WrapNonExceptionThrows") },
                     new object[] { true }));
 
-            // Add an assembly attribute that tells the CLR not to attempt to load PDBs when compiling this assembly 
+            // Add an assembly attribute that tells the CLR not to attempt to load PDBs when compiling this assembly
             assembly.SetCustomAttribute(
                 new CustomAttributeBuilder(
                     typeof(DebuggableAttribute).GetConstructor(new Type[] { typeof(DebuggableAttribute.DebuggingModes) }),
@@ -207,7 +218,7 @@ namespace Nuclei.ExceptionHandling
             var il = meth.GetILGenerator();
 
             // This variable shouldn't be necessary (it's never used)
-            // but for some reason the compiler generates illegal IL if this 
+            // but for some reason the compiler generates illegal IL if this
             // variable isn't there ...
             var exLoc = il.DeclareLocal(typeof(Exception));
 
@@ -236,7 +247,7 @@ namespace Nuclei.ExceptionHandling
             il.Emit(OpCodes.Ret);
 
             var bakedType = type.CreateType();
-#if (DEBUG)
+#if DEBUG
             assembly.Save("DynamicFilter.dll");
 #endif
 

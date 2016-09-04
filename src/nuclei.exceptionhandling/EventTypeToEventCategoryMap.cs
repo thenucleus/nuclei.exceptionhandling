@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright company="Nuclei">
-//     Copyright 2013 Nuclei. Licensed under the Apache License, Version 2.0.
+// <copyright company="TheNucleus">
+// Copyright (c) TheNucleus. All rights reserved.
+// Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -17,9 +18,9 @@ namespace Nuclei.ExceptionHandling
         /// <summary>
         /// The table that maps an event type to an event category.
         /// </summary>
-        private static readonly Dictionary<EventType, short> s_EventTypeToEventCategoryMap =
-            new Dictionary<EventType, short> 
-                { 
+        private static readonly Dictionary<EventType, short> _eventTypeToEventCategoryMap =
+            new Dictionary<EventType, short>
+                {
                     { EventType.Exception, 0 }
                 };
 
@@ -30,7 +31,7 @@ namespace Nuclei.ExceptionHandling
         /// <returns>The requested category ID.</returns>
         public static short EventCategory(EventType type)
         {
-            return s_EventTypeToEventCategoryMap[type];
+            return _eventTypeToEventCategoryMap[type];
         }
     }
 }

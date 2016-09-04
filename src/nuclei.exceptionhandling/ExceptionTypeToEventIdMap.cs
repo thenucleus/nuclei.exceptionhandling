@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright company="Nuclei">
-//     Copyright 2013 Nuclei. Licensed under the Apache License, Version 2.0.
+// <copyright company="TheNucleus">
+// Copyright (c) TheNucleus. All rights reserved.
+// Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -19,20 +20,20 @@ namespace Nuclei.ExceptionHandling
         /// <summary>
         /// The table that maps an exception type to an event ID.
         /// </summary>
-        private static readonly Dictionary<Type, int> s_ExceptionTypeToEventIdMap =
-            new Dictionary<Type, int> 
-                { 
+        private static readonly Dictionary<Type, int> _exceptionTypeToEventIdMap =
+            new Dictionary<Type, int>
+                {
                     // Runtime errors
                     { typeof(OutOfMemoryException), 0 },
                     { typeof(StackOverflowException), 1 },
                     { typeof(AccessViolationException), 2 },
-                    
+
                     // Standard errors
                     { typeof(AppDomainUnloadedException), 50 },
                     { typeof(ArgumentException), 51 },
                     { typeof(ArgumentNullException), 52 },
                     { typeof(ArgumentOutOfRangeException), 53 },
-                    
+
                     // I/O
                     { typeof(IOException), 100 },
                     { typeof(DirectoryNotFoundException), 101 },
@@ -61,7 +62,7 @@ namespace Nuclei.ExceptionHandling
         public static int EventIdForException(Exception exception)
         {
             var exceptionType = exception.GetType();
-            while (!s_ExceptionTypeToEventIdMap.ContainsKey(exceptionType))
+            while (!_exceptionTypeToEventIdMap.ContainsKey(exceptionType))
             {
                 exceptionType = exceptionType.BaseType;
             }
@@ -69,7 +70,7 @@ namespace Nuclei.ExceptionHandling
             // If we get here then:
             // a) we found our exception type
             // b) we fell all the way through and found Exception as the type
-            return s_ExceptionTypeToEventIdMap[exceptionType];
+            return _exceptionTypeToEventIdMap[exceptionType];
         }
     }
 }

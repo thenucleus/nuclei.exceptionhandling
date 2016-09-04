@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright company="Nuclei">
-//     Copyright 2013 Nuclei. Licensed under the Apache License, Version 2.0.
+// <copyright company="TheNucleus">
+// Copyright (c) TheNucleus. All rights reserved.
+// Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -25,7 +26,9 @@ namespace Nuclei.ExceptionHandling
         /// <returns>
         /// A value indicating whether the action executed successfully or not.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "Catching an Exception object here because this is the top-level exception handler.")]
         public static GuardResult RunGuarded(Action actionToExecute, params ExceptionProcessor[] exceptionProcessors)
         {
