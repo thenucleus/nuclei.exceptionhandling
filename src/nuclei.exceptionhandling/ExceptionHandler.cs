@@ -1,6 +1,7 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright company="Nuclei">
-//     Copyright 2013 Nuclei. Licensed under the Apache License, Version 2.0.
+// <copyright company="TheNucleus">
+// Copyright (c) TheNucleus. All rights reserved.
+// Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
 
@@ -21,7 +22,7 @@ namespace Nuclei.ExceptionHandling
         /// <summary>
         /// The collection of loggers that must be notified if an exception happens.
         /// </summary>
-        private readonly ExceptionProcessor[] m_Loggers;
+        private readonly ExceptionProcessor[] _loggers;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionHandler"/> class.
@@ -29,17 +30,22 @@ namespace Nuclei.ExceptionHandling
         /// <param name="exceptionProcessors">The collection of exception processors that will be used to log any unhandled exception.</param>
         public ExceptionHandler(params ExceptionProcessor[] exceptionProcessors)
         {
-            m_Loggers = exceptionProcessors ?? new ExceptionProcessor[0];
+            _loggers = exceptionProcessors ?? new ExceptionProcessor[0];
         }
 
         /// <summary>
         /// Used when an unhandled exception occurs in an <see cref="AppDomain"/>.
         /// </summary>
         /// <param name="exception">The exception that was thrown.</param>
-        /// <param name="isApplicationTerminating">Indicates if the application is about to shut down or not.</param>
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+        [SuppressMessage(
+            "Microsoft.Design",
+            "CA1031:DoNotCatchGeneralExceptionTypes",
             Justification = "We're doing exception handling here, we don't really want anything to escape.")]
-        public void OnException(Exception exception, bool isApplicationTerminating)
+        [SuppressMessage(
+            "Microsoft.Performance",
+            "CA1811:AvoidUncalledPrivateCode",
+            Justification = "This class is embedded in an user assembly and called from there. Hence all methods are internal.")]
+        public void OnException(Exception exception)
         {
             // Something has gone really wrong here. We need to be very careful
             // when we try to deal with this exception because:
@@ -52,7 +58,7 @@ namespace Nuclei.ExceptionHandling
             //   but that will probably fail ...
             //
             // We don't want to throw an exception if we're handling unhandled exceptions ...
-            foreach (var logger in m_Loggers)
+            foreach (var logger in _loggers)
             {
                 try
                 {
