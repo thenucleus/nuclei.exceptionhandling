@@ -165,3 +165,4 @@ AssemblyInfo.Company.cs
 *.ide
 doc/Nuclei.ExceptionHandling.Documentation/docfx.json
 doc/Nuclei.ExceptionHandling.Documentation/_site/
+src/.vs/
