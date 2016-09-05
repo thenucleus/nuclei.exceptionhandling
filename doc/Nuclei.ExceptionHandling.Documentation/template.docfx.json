@@ -10,7 +10,7 @@
                         "_site/**"
                     ],
                     "files": [
-                        "src/**/Nuclei.Fusion.csproj"
+                        "src/**/Nuclei.ExceptionHandling.csproj"
                     ]
                 }
             ],
