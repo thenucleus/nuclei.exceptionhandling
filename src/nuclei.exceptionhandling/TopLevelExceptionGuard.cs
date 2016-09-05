@@ -15,6 +15,7 @@ namespace Nuclei.ExceptionHandling
     /// Defines a top level exception handler which stops all exceptions from propagating out of the application, thus
     /// providing a chance for logging and semi-graceful termination of the application.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class TopLevelExceptionGuard
     {
         /// <summary>

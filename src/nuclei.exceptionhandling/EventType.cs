@@ -11,6 +11,7 @@ namespace Nuclei.ExceptionHandling
     /// Defines a set of event category types used to indicate what category
     /// an event log entry belongs to.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal enum EventType
     {
         /// <summary>

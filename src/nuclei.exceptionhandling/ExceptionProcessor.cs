@@ -13,5 +13,6 @@ namespace Nuclei.ExceptionHandling
     /// Defines the delegate used for actions that process unhandled exceptions.
     /// </summary>
     /// <param name="exception">The exception to process.</param>
+    //// GENERATED_CODE_ATTRIBUTE
     public delegate void ExceptionProcessor(Exception exception);
 }

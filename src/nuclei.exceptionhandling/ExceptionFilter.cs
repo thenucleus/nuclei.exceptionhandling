@@ -40,6 +40,7 @@ namespace Nuclei.ExceptionHandling
     /// <source>
     /// http://blogs.msdn.com/b/rmbyers/archive/2010/01/30/sample-reflection-emit-code-for-using-exception-filters-from-c.aspx
     /// </source>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class ExceptionFilter
     {
         private static Action<Action, Func<Exception, bool>, Action<Exception>> _filter = GenerateFilter();

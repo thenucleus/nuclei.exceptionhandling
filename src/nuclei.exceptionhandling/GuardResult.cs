@@ -10,6 +10,7 @@ namespace Nuclei.ExceptionHandling
     /// <summary>
     /// Defines the possible exit results for a guarded execution of a method.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal enum GuardResult
     {
         /// <summary>

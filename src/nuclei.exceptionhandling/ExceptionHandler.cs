@@ -16,6 +16,7 @@ namespace Nuclei.ExceptionHandling
     /// <design>
     /// This class must be public because we use it in the AppDomainBuilder.
     /// </design>
+    //// GENERATED_CODE_ATTRIBUTE
     [Serializable]
     public sealed class ExceptionHandler
     {

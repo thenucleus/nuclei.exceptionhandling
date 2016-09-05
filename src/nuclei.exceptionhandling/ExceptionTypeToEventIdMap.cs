@@ -16,6 +16,7 @@ namespace Nuclei.ExceptionHandling
     /// Defines methods that map an <see cref="Exception"/> to an ID number for error reporting
     /// purposes.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class ExceptionTypeToEventIdMap
     {
         /// <summary>
