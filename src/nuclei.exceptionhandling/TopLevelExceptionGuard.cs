@@ -4,7 +4,7 @@
 // Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
-
+//// GENERATED_CODE_HEADER
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -15,6 +15,7 @@ namespace Nuclei.ExceptionHandling
     /// Defines a top level exception handler which stops all exceptions from propagating out of the application, thus
     /// providing a chance for logging and semi-graceful termination of the application.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class TopLevelExceptionGuard
     {
         /// <summary>

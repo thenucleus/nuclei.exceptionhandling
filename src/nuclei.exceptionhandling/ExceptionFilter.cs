@@ -4,11 +4,10 @@
 // Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
-
+//// GENERATED_CODE_HEADER
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -41,6 +40,7 @@ namespace Nuclei.ExceptionHandling
     /// <source>
     /// http://blogs.msdn.com/b/rmbyers/archive/2010/01/30/sample-reflection-emit-code-for-using-exception-filters-from-c.aspx
     /// </source>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class ExceptionFilter
     {
         private static Action<Action, Func<Exception, bool>, Action<Exception>> _filter = GenerateFilter();

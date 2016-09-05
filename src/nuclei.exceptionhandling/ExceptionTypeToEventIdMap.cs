@@ -4,7 +4,7 @@
 // Licensed under the Apache License, Version 2.0 license. See LICENCE.md file in the project root for full license information.
 // </copyright>
 //-----------------------------------------------------------------------
-
+//// GENERATED_CODE_HEADER
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -16,6 +16,7 @@ namespace Nuclei.ExceptionHandling
     /// Defines methods that map an <see cref="Exception"/> to an ID number for error reporting
     /// purposes.
     /// </summary>
+    //// GENERATED_CODE_ATTRIBUTE
     internal static class ExceptionTypeToEventIdMap
     {
         /// <summary>
