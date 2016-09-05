@@ -50,7 +50,7 @@ namespace Nuclei.ExceptionHandling
                 },
                 e =>
                 {
-                    processor.OnException(e, false);
+                    processor.OnException(e);
                     result = GuardResult.Failure;
                 });
 
