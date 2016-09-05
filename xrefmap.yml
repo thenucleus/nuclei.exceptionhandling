@@ -1,0 +1,30 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Nuclei.ExceptionHandling
+  name: Nuclei.ExceptionHandling
+  href: api/Nuclei.ExceptionHandling.html#Nuclei_ExceptionHandling
+  commentId: N:Nuclei.ExceptionHandling
+  fullName: Nuclei.ExceptionHandling
+- uid: Nuclei.ExceptionHandling.ExceptionHandler
+  name: ExceptionHandler
+  href: api/Nuclei.ExceptionHandling.ExceptionHandler.html#Nuclei_ExceptionHandling_ExceptionHandler
+  commentId: T:Nuclei.ExceptionHandling.ExceptionHandler
+  fullName: Nuclei.ExceptionHandling.ExceptionHandler
+- uid: Nuclei.ExceptionHandling.ExceptionHandler.#ctor(Nuclei.ExceptionHandling.ExceptionProcessor[])
+  name: ExceptionHandler(ExceptionProcessor[])
+  href: api/Nuclei.ExceptionHandling.ExceptionHandler.html#Nuclei_ExceptionHandling_ExceptionHandler__ctor_Nuclei_ExceptionHandling_ExceptionProcessor___
+  commentId: M:Nuclei.ExceptionHandling.ExceptionHandler.#ctor(Nuclei.ExceptionHandling.ExceptionProcessor[])
+  name.vb: ExceptionHandler(ExceptionProcessor())
+  fullName: Nuclei.ExceptionHandling.ExceptionHandler.ExceptionHandler(Nuclei.ExceptionHandling.ExceptionProcessor[])
+  fullName.vb: Nuclei.ExceptionHandling.ExceptionHandler.ExceptionHandler(Nuclei.ExceptionHandling.ExceptionProcessor())
+- uid: Nuclei.ExceptionHandling.ExceptionHandler.OnException(System.Exception)
+  name: OnException(Exception)
+  href: api/Nuclei.ExceptionHandling.ExceptionHandler.html#Nuclei_ExceptionHandling_ExceptionHandler_OnException_System_Exception_
+  commentId: M:Nuclei.ExceptionHandling.ExceptionHandler.OnException(System.Exception)
+  fullName: Nuclei.ExceptionHandling.ExceptionHandler.OnException(System.Exception)
+- uid: Nuclei.ExceptionHandling.ExceptionProcessor
+  name: ExceptionProcessor
+  href: api/Nuclei.ExceptionHandling.ExceptionProcessor.html#Nuclei_ExceptionHandling_ExceptionProcessor
+  commentId: T:Nuclei.ExceptionHandling.ExceptionProcessor
+  fullName: Nuclei.ExceptionHandling.ExceptionProcessor
