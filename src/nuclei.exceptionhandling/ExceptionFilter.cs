@@ -8,6 +8,7 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization; // Required only in debug mode.
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
